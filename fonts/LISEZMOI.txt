@@ -1,0 +1,6 @@
+Déposez ici deux fichiers de police :
+
+Fraunces.woff2  (police des titres)
+Inter.woff2     (police des textes)
+
+Tant qu'ils sont absents, le site utilise des polices de secours.
