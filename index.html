@@ -10,6 +10,7 @@
 :root{
   --noir:#000;--creme:#E8DCC0;--creme-clair:#F3EEE4;--gris:#8A8278;
   --titre:"Fraunces",Georgia,"Times New Roman",serif;
+  --logo:Georgia,"Times New Roman",serif;
   --texte:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
 }
 *{box-sizing:border-box;margin:0}
@@ -21,15 +22,15 @@ a{color:inherit;text-decoration:none}
 
 /* Navigation */
 .nav{display:flex;align-items:center;justify-content:space-between;padding:1.25rem clamp(1rem,4vw,3rem)}
-.nav-logo{font-family:var(--titre);font-size:1.15rem;letter-spacing:.12em;color:var(--creme)}
+.nav-logo{font-family:var(--logo);font-size:1.15rem;letter-spacing:.12em;color:var(--creme)}
 .nav-liens{display:flex;gap:clamp(1rem,3vw,2.25rem);font-size:.9rem;color:var(--gris)}
 .nav-liens a:hover{color:var(--creme-clair)}
 .nav-liens a[aria-current]{color:var(--creme)}
 
 /* Titre */
 .hero{padding-top:clamp(2rem,7vh,5rem);text-align:center}
-.hero h1{font-family:var(--titre);font-weight:350;font-size:clamp(3.5rem,13vw,10.5rem);
-  line-height:.9;letter-spacing:.04em;color:var(--creme);font-variation-settings:"SOFT" 100,"opsz" 144}
+.hero h1{font-family:var(--logo);font-weight:400;font-size:clamp(3.5rem,13vw,10.5rem);
+  line-height:.9;letter-spacing:.04em;color:var(--creme)}
 .hero p{margin-top:1rem;color:var(--gris);font-size:1rem}
 
 /* La scène 3D */
@@ -118,7 +119,7 @@ a{color:inherit;text-decoration:none}
 /* Pied de page */
 .pied{border-top:1px solid rgba(232,220,192,.12);margin-top:clamp(2rem,6vw,4rem)}
 .pied-haut{max-width:1120px;margin:0 auto;padding:clamp(3rem,7vw,5rem) clamp(1rem,4vw,2rem) 2.5rem;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:2rem}
-.pied-haut .pied-logo{margin-top:0;max-width:none;font-family:var(--titre);font-size:1.8rem;color:var(--creme);letter-spacing:.06em}
+.pied-haut .pied-logo{margin-top:0;max-width:none;font-family:var(--logo);font-size:1.8rem;color:var(--creme);letter-spacing:.06em}
 .pied-haut p{color:var(--gris);font-size:.9rem;margin-top:.6rem;max-width:32ch;line-height:1.6}
 .pied h3{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gris);font-weight:500;margin-bottom:1rem}
 .pied ul{list-style:none;padding:0;margin:0;display:grid;gap:.6rem}
