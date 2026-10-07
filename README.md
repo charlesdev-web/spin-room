@@ -6,6 +6,14 @@ Page d'accueil d'un disquaire en ligne imaginaire, vinyles neufs et d'occasion, 
 
 ![Aperçu de SPIN ROOM](apercu.jpg)
 
+
+
+https://github.com/user-attachments/assets/8c3ca5e1-8df1-4fe0-a63c-24d3b9902a8c
+
+
+
+
+
 > Projet de démonstration pour mon portfolio. Les artistes, les albums, les prix et les pochettes sont fictifs ; les pochettes ont été générées en code pour le projet.
 
 ## Ce que fait la page
