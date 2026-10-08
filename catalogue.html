@@ -290,7 +290,7 @@ const tris = {
 
 function carte(d) {
   const img = pochette(d);
-  return '<a class="carte" href="#" aria-label="' + d.artiste + ', ' + d.titre + '">' +
+  return '<a class="carte" href="' + fiche(d) + '" aria-label="' + d.artiste + ', ' + d.titre + '">' +
     '<div class="carte-visuel"><span class="mini-vinyle" style="--etiquette:url(\'' + img + '\')' + (d.couleur ? ';--c:' + d.couleur : '') + '"></span>' +
     '<img src="' + img + '" alt="" loading="lazy"></div>' +
     '<p class="carte-artiste">' + d.artiste + '</p><p class="carte-titre">' + d.titre + '</p>' +

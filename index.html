@@ -213,7 +213,7 @@ a{color:inherit;text-decoration:none}
 const selection = DISQUES.filter(d => d.selection).sort((a, b) => a.selection - b.selection);
 document.getElementById("grille").innerHTML = selection.map(d => {
   const img = pochette(d);
-  return '<a class="carte" href="catalogue.html"><div class="carte-visuel"><span class="mini-vinyle" style="--etiquette:url(\'' + img + '\')"></span>' +
+  return '<a class="carte" href="' + fiche(d) + '"><div class="carte-visuel"><span class="mini-vinyle" style="--etiquette:url(\'' + img + '\')"></span>' +
     '<img src="' + img + '" alt="Pochette de ' + d.titre + ' — ' + d.artiste + '" loading="lazy"></div>' +
     '<p class="carte-artiste">' + d.artiste + '</p><p class="carte-titre">' + d.titre + '</p>' +
     '<div class="carte-infos"><span class="badge ' + d.etat + '">' + (d.etat === "neuf" ? "Neuf" : "Occasion") + '</span>' +
@@ -262,7 +262,13 @@ disques.forEach(([nom, titre, fichier, couleur]) => {
       album.textContent = "Ajoute des images dans le dossier pochettes/";
     }
   });
-  el.addEventListener("click", () => { if (!glisse.bouge) aller(items.indexOf(item)); });
+  el.addEventListener("click", () => {
+    if (glisse.bouge) return;
+    const k = items.indexOf(item);
+    // Un clic sur le disque du premier plan ouvre sa fiche ; sur un autre, on l'amène devant
+    if (k === Math.round(etat.pos)) location.href = "disque.html?id=" + fichier;
+    else aller(k);
+  });
   el.addEventListener("mouseenter", () => { if (!glisse.actif) aller(items.indexOf(item)); });
   bac.appendChild(el);
   items.push(item);
