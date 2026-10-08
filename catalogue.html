@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Catalogue — SPIN ROOM</title>
+<meta name="description" content="Tous les vinyles neufs et d'occasion de SPIN ROOM, à filtrer par genre et par état.">
+<style>
+@font-face{font-family:"Fraunces";src:url("fonts/Fraunces.woff2") format("woff2"),url("fonts/Fraunces.ttf") format("truetype");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Inter";src:url("fonts/Inter.woff2") format("woff2"),url("fonts/Inter.ttf") format("truetype");font-weight:100 900;font-display:swap}
+:root{
+  --noir:#000;--creme:#E8DCC0;--creme-clair:#F3EEE4;--gris:#8A8278;
+  --titre:"Fraunces",Georgia,"Times New Roman",serif;
+  --logo:Georgia,"Times New Roman",serif;
+  --texte:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+html,body{background:var(--noir);color:var(--creme-clair);font-family:var(--texte)}
+body{min-height:100vh;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--creme);outline-offset:4px}
+
+/* Navigation */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:1.25rem clamp(1rem,4vw,3rem)}
+.nav-logo{font-family:var(--logo);font-size:1.15rem;letter-spacing:.12em;color:var(--creme)}
+.nav-liens{display:flex;gap:clamp(1rem,3vw,2.25rem);font-size:.9rem;color:var(--gris)}
+.nav-liens a:hover{color:var(--creme-clair)}
+.nav-liens a[aria-current]{color:var(--creme)}
+
+.cta{display:flex;justify-content:center;padding:1.5rem 0 3rem}
+.bouton{background:var(--creme);color:#1f1a10;font-size:.95rem;font-weight:500;
+  padding:.85rem 1.8rem;border-radius:999px;transition:background .2s}
+.bouton:hover{background:var(--creme-clair)}
+/* Menu téléphone */
+.burger{display:none;position:relative;z-index:30;width:44px;height:44px;margin-right:-10px;background:none;border:none;cursor:pointer}
+.burger span{position:absolute;left:11px;right:11px;height:1.5px;background:var(--creme);transition:transform .35s ease,top .35s ease}
+.burger span:first-child{top:17px}.burger span:last-child{top:26px}
+.menu-ouvert .burger span:first-child{top:21.5px;transform:rotate(45deg)}
+.menu-ouvert .burger span:last-child{top:21.5px;transform:rotate(-45deg)}
+.menu-mobile{position:fixed;inset:0;z-index:20;background:var(--noir);display:flex;flex-direction:column;justify-content:center;
+  padding:5rem 2rem calc(3rem + env(safe-area-inset-bottom,0px));opacity:0;visibility:hidden;transition:opacity .35s ease,visibility 0s .35s}
+.menu-ouvert .menu-mobile{opacity:1;visibility:visible;transition:opacity .35s ease}
+.menu-mobile a{font-family:var(--titre);font-size:clamp(2.4rem,11vw,3.4rem);font-weight:350;color:var(--creme-clair);line-height:1.3;
+  transform:translateY(14px);opacity:0;transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .5s ease}
+.menu-mobile a[aria-current]{color:var(--creme)}
+.menu-ouvert .menu-mobile a{transform:none;opacity:1}
+.menu-ouvert .menu-mobile a:nth-child(2){transition-delay:.05s}
+.menu-ouvert .menu-mobile a:nth-child(3){transition-delay:.1s}
+.menu-ouvert .menu-mobile a:nth-child(4){transition-delay:.15s}
+.menu-mobile p{margin-top:2.5rem;font-size:.85rem;color:var(--gris)}
+.menu-ouvert{overflow:hidden}
+.nav-logo{position:relative;z-index:30}
+
+/* Sections */
+.section{max-width:1120px;margin:0 auto;padding:clamp(4rem,10vw,8rem) clamp(1rem,4vw,2rem)}
+.surtitre{font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gris);margin-bottom:1.25rem}
+.entete{display:flex;justify-content:space-between;align-items:end;gap:1rem;margin-bottom:clamp(2rem,4vw,3rem)}
+.entete h2{font-family:var(--titre);font-weight:350;font-size:clamp(2rem,4vw,3rem);color:var(--creme);line-height:1}
+.lien{font-size:.9rem;color:var(--creme);border-bottom:1px solid rgba(232,220,192,.35);padding-bottom:2px;white-space:nowrap}
+.lien:hover{border-color:var(--creme)}
+.grille{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.5rem,3vw,2.5rem) clamp(1rem,2.5vw,2rem)}
+.carte{display:block}
+.carte-visuel{position:relative;aspect-ratio:1;margin-right:12%}
+.carte-visuel .mini-vinyle{position:absolute;top:4%;bottom:4%;right:-12%;aspect-ratio:1;border-radius:50%;
+  background:repeating-radial-gradient(circle,#141414 0 2px,#0c0c0c 2px 3px);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.carte-visuel .mini-vinyle::after{content:"";position:absolute;inset:33%;border-radius:50%;background:var(--etiquette) center/cover}
+.carte-visuel img{position:relative;width:100%;height:100%;object-fit:cover;display:block;border-radius:2px;background:#1c1a19;
+  box-shadow:0 20px 40px -18px rgba(0,0,0,.9),0 0 0 1px rgba(232,220,192,.08);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.carte:hover .mini-vinyle,.carte:focus-visible .mini-vinyle,.carte.survol .mini-vinyle{transform:translateX(14%) rotate(40deg)}
+.carte:hover img,.carte:focus-visible img,.carte.survol img{transform:translateY(-4px)}
+.carte-artiste{margin-top:1.1rem;font-size:.82rem;color:var(--gris)}
+.carte-titre{font-family:var(--titre);font-size:1.3rem;color:var(--creme-clair);margin-top:.15rem;line-height:1.2}
+.carte-infos{display:flex;align-items:center;gap:.6rem;margin-top:.7rem;font-size:.82rem;color:var(--gris)}
+.badge{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:.25rem .6rem;border-radius:999px;border:1px solid var(--creme)}
+.badge.neuf{background:var(--creme);color:#1f1a10}
+.badge.occasion{color:var(--creme)}
+.prix{margin-left:auto;color:var(--creme-clair);font-size:.95rem}
+/* Pied de page */
+.pied{border-top:1px solid rgba(232,220,192,.12);margin-top:clamp(2rem,6vw,4rem)}
+.pied-haut{max-width:1120px;margin:0 auto;padding:clamp(3rem,7vw,5rem) clamp(1rem,4vw,2rem) 2.5rem;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:2rem}
+.pied-haut .pied-logo{margin-top:0;max-width:none;font-family:var(--logo);font-size:1.8rem;color:var(--creme);letter-spacing:.06em}
+.pied-haut p{color:var(--gris);font-size:.9rem;margin-top:.6rem;max-width:32ch;line-height:1.6}
+.pied h3{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gris);font-weight:500;margin-bottom:1rem}
+.pied ul{list-style:none;padding:0;margin:0;display:grid;gap:.6rem}
+.pied li a{color:var(--creme-clair);font-size:.95rem}
+.pied li a:hover{color:var(--creme)}
+.pied-bas{max-width:1120px;margin:0 auto;padding:1.5rem clamp(1rem,4vw,2rem) calc(1.5rem + env(safe-area-inset-bottom,0px));
+  border-top:1px solid rgba(232,220,192,.08);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.75rem;color:var(--gris)}
+@media (max-width:820px){.grille{grid-template-columns:repeat(2,1fr)}
+  .pied-haut{grid-template-columns:1fr 1fr}.pied-haut > div:first-child{grid-column:1 / -1}}
+@media (max-width:420px){.carte-titre{font-size:1.1rem}.carte-infos{flex-wrap:wrap}.prix{margin-left:0;width:100%}}
+.grille .carte{min-width:0}
+
+/* Catalogue */
+.cat-tete{max-width:1240px;margin:0 auto;padding:clamp(2.5rem,7vw,5rem) clamp(1rem,4vw,2rem) clamp(1.5rem,3vw,2.5rem);
+  display:flex;justify-content:space-between;align-items:end;gap:1.5rem;flex-wrap:wrap}
+.cat-tete h1{font-family:var(--titre);font-weight:350;font-size:clamp(3rem,9vw,6.5rem);line-height:.9;color:var(--creme)}
+.compteur{color:var(--gris);font-size:.95rem;padding-bottom:.6rem}
+.compteur strong{color:var(--creme-clair);font-weight:500}
+
+.outils{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-top:1px solid rgba(232,220,192,.1);border-bottom:1px solid rgba(232,220,192,.1)}
+.outils-int{max-width:1240px;margin:0 auto;padding:1rem clamp(1rem,4vw,2rem);display:grid;gap:.85rem}
+.ligne{display:flex;align-items:center;gap:.75rem 1.25rem;flex-wrap:wrap}
+.recherche{position:relative;flex:1 1 260px;max-width:420px}
+.recherche input{width:100%;background:transparent;border:1px solid rgba(232,220,192,.25);border-radius:999px;color:var(--creme-clair);
+  font:inherit;font-size:.95rem;padding:.65rem 1rem .65rem 2.6rem;outline:none;transition:border-color .2s}
+.recherche input::placeholder{color:var(--gris)}
+.recherche input:focus{border-color:var(--creme)}
+.recherche svg{position:absolute;left:1rem;top:50%;transform:translateY(-50%);width:16px;height:16px;stroke:var(--gris);fill:none;stroke-width:2}
+.etats,.tri{display:flex;align-items:center;gap:.5rem}
+.tri{margin-left:auto}
+.tri label,.groupe-titre{font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gris)}
+select{appearance:none;-webkit-appearance:none;background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23E8DCC0' fill='none' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right .9rem center;
+  border:1px solid rgba(232,220,192,.25);border-radius:999px;color:var(--creme-clair);font:inherit;font-size:.9rem;padding:.55rem 2.2rem .55rem 1rem;cursor:pointer}
+select option{background:#111;color:var(--creme-clair)}
+.puces{display:flex;gap:.5rem;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.puces::-webkit-scrollbar{display:none}
+.puce{flex:0 0 auto;background:transparent;border:1px solid rgba(232,220,192,.25);border-radius:999px;color:var(--creme-clair);
+  font:inherit;font-size:.85rem;padding:.45rem .95rem;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.puce:hover{border-color:var(--creme)}
+.puce[aria-pressed="true"]{background:var(--creme);border-color:var(--creme);color:#1f1a10}
+.puce span{opacity:.55;margin-left:.35rem;font-size:.78rem}
+
+.cat-grille{max-width:1240px;margin:0 auto;padding:clamp(2rem,4vw,3rem) clamp(1rem,4vw,2rem) 0}
+.cat-grille .grille{grid-template-columns:repeat(4,minmax(0,1fr))}
+.carte-meta{font-size:.78rem;color:var(--gris);margin-top:.35rem}
+.carte-visuel .mini-vinyle{background:repeating-radial-gradient(circle,var(--c,#141414) 0 2px,color-mix(in srgb,var(--c,#141414) 75%,#000) 2px 3px)}
+.vide{display:none;text-align:center;padding:4rem 1rem 2rem;color:var(--gris)}
+.vide.visible{display:block}
+.vide p:first-child{font-family:var(--titre);font-size:1.8rem;color:var(--creme-clair);margin-bottom:.6rem}
+.vide .bouton{display:inline-block;margin-top:1.5rem;border:none;cursor:pointer;font-family:inherit}
+
+@media (max-width:1100px){.cat-grille .grille{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:820px){.cat-grille .grille{grid-template-columns:repeat(2,minmax(0,1fr))}.tri{margin-left:0}}
+@media (max-width:600px){.nav-liens{display:none}.burger{display:block}
+  .outils{position:static}
+  .outils-int{gap:.75rem}.recherche{flex:1 1 100%;max-width:none}
+  .ligne.haut{justify-content:space-between}.tri{margin-left:auto}.tri label{display:none}
+  .etats .groupe-titre{display:none}}
+@media (prefers-reduced-motion:reduce){.menu-mobile,.menu-mobile a,.burger span,.carte *{transition:none!important}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-logo" href="index.html">SPIN ROOM</a>
+  <div class="nav-liens">
+    <a href="index.html">Accueil</a><a href="catalogue.html" aria-current="page">Catalogue</a><a href="#">À propos</a><a href="#">Contact</a>
+  </div>
+  <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-mobile"><span></span><span></span></button>
+</nav>
+<div class="menu-mobile" id="menu-mobile" aria-hidden="true">
+  <a href="index.html">Accueil</a><a href="catalogue.html" aria-current="page">Catalogue</a><a href="#">À propos</a><a href="#">Contact</a>
+  <p>Vinyles neufs et d'occasion</p>
+</div>
+
+<header class="cat-tete">
+  <div>
+    <p class="surtitre">Le bac complet</p>
+    <h1>Catalogue</h1>
+  </div>
+  <p class="compteur" id="compteur" aria-live="polite"></p>
+</header>
+
+<section class="outils" aria-label="Filtres du catalogue">
+  <div class="outils-int">
+    <div class="ligne haut">
+      <label class="recherche">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input type="search" id="recherche" placeholder="Rechercher un artiste ou un album" aria-label="Rechercher un artiste ou un album" autocomplete="off">
+      </label>
+      <div class="etats" role="group" aria-label="État">
+        <span class="groupe-titre">État</span>
+        <div class="puces" id="etats"></div>
+      </div>
+      <div class="tri">
+        <label for="tri">Trier</label>
+        <select id="tri">
+          <option value="nouveautes">Nouveautés</option>
+          <option value="prix-asc">Prix croissant</option>
+          <option value="prix-desc">Prix décroissant</option>
+          <option value="artiste">Artiste A → Z</option>
+          <option value="annee">Plus anciens</option>
+        </select>
+      </div>
+    </div>
+    <div class="puces" id="genres" role="group" aria-label="Genre"></div>
+  </div>
+</section>
+
+<main class="cat-grille">
+  <div class="grille" id="grille"></div>
+  <div class="vide" id="vide">
+    <p>Aucun disque ne correspond</p>
+    <p>Essaie un autre genre, ou retire un filtre.</p>
+    <button class="bouton" id="reinit" type="button">Voir tout le bac</button>
+  </div>
+</main>
+
+<footer class="pied">
+  <div class="pied-haut">
+    <div>
+      <p class="pied-logo">SPIN ROOM</p>
+      <p>Vinyles neufs et d'occasion, choisis un par un.</p>
+    </div>
+    <div>
+      <h3>Boutique</h3>
+      <ul><li><a href="catalogue.html">Catalogue</a></li><li><a href="#">À propos</a></li><li><a href="#">Contact</a></li></ul>
+    </div>
+    <div>
+      <h3>Suivre</h3>
+      <ul><li><a href="#">Instagram</a></li></ul>
+    </div>
+  </div>
+  <div class="pied-bas">
+    <span>© 2026 SPIN ROOM</span>
+    <span>Projet de démonstration. Artistes, albums et pochettes fictifs.</span>
+  </div>
+</footer>
+
+<script src="disques.js"></script>
+<script>
+// Menu téléphone
+const burger = document.getElementById("burger");
+const menu = document.getElementById("menu-mobile");
+function basculerMenu(ouvrir) {
+  document.body.classList.toggle("menu-ouvert", ouvrir);
+  burger.setAttribute("aria-expanded", ouvrir);
+  burger.setAttribute("aria-label", ouvrir ? "Fermer le menu" : "Ouvrir le menu");
+  menu.setAttribute("aria-hidden", !ouvrir);
+  if (ouvrir) menu.querySelector("a").focus();
+}
+burger.addEventListener("click", () => basculerMenu(!document.body.classList.contains("menu-ouvert")));
+menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => basculerMenu(false)));
+addEventListener("keydown", e => { if (e.key === "Escape") basculerMenu(false); });
+
+// --- Catalogue ---
+const grille = document.getElementById("grille");
+const vide = document.getElementById("vide");
+const compteur = document.getElementById("compteur");
+const champ = document.getElementById("recherche");
+const selectTri = document.getElementById("tri");
+
+const params = new URLSearchParams(location.search);
+const filtre = {
+  genre: params.get("genre") || "Tous",
+  etat: params.get("etat") || "Tous",
+  texte: params.get("q") || "",
+  tri: params.get("tri") || "nouveautes"
+};
+
+const sansAccent = t => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+const genres = ["Tous", ...new Set(DISQUES.map(d => d.genre))];
+
+function puces(conteneur, valeurs, cle, compte) {
+  conteneur.innerHTML = valeurs.map(v =>
+    '<button class="puce" type="button" data-v="' + v + '" aria-pressed="' + (filtre[cle] === v) + '">' + v +
+    (compte ? '<span>' + compte(v) + '</span>' : '') + '</button>').join("");
+  conteneur.addEventListener("click", e => {
+    const b = e.target.closest(".puce");
+    if (!b) return;
+    filtre[cle] = b.dataset.v;
+    conteneur.querySelectorAll(".puce").forEach(x => x.setAttribute("aria-pressed", x === b));
+    afficher();
+  });
+}
+puces(document.getElementById("genres"), genres, "genre",
+  g => g === "Tous" ? DISQUES.length : DISQUES.filter(d => d.genre === g).length);
+puces(document.getElementById("etats"), ["Tous", "Neuf", "Occasion"], "etat");
+
+champ.value = filtre.texte;
+selectTri.value = filtre.tri;
+champ.addEventListener("input", () => { filtre.texte = champ.value; afficher(); });
+selectTri.addEventListener("change", () => { filtre.tri = selectTri.value; afficher(); });
+document.getElementById("reinit").addEventListener("click", () => {
+  Object.assign(filtre, { genre: "Tous", etat: "Tous", texte: "" });
+  champ.value = "";
+  document.querySelectorAll(".puce").forEach(x => x.setAttribute("aria-pressed", x.dataset.v === "Tous"));
+  afficher();
+});
+
+const tris = {
+  "nouveautes": (a, b) => b.ajout - a.ajout,
+  "prix-asc": (a, b) => a.prix - b.prix,
+  "prix-desc": (a, b) => b.prix - a.prix,
+  "artiste": (a, b) => a.artiste.localeCompare(b.artiste, "fr"),
+  "annee": (a, b) => a.annee - b.annee
+};
+
+function carte(d) {
+  const img = pochette(d);
+  return '<a class="carte" href="#" aria-label="' + d.artiste + ', ' + d.titre + '">' +
+    '<div class="carte-visuel"><span class="mini-vinyle" style="--etiquette:url(\'' + img + '\')' + (d.couleur ? ';--c:' + d.couleur : '') + '"></span>' +
+    '<img src="' + img + '" alt="" loading="lazy"></div>' +
+    '<p class="carte-artiste">' + d.artiste + '</p><p class="carte-titre">' + d.titre + '</p>' +
+    '<p class="carte-meta">' + d.genre + ' · ' + d.annee + '</p>' +
+    '<div class="carte-infos"><span class="badge ' + d.etat + '">' + (d.etat === "neuf" ? "Neuf" : "Occasion") + '</span>' +
+    (d.note ? '<span>' + d.note + '</span>' : '') + '<span class="prix">' + prixTexte(d.prix) + '</span></div></a>';
+}
+
+function afficher() {
+  const q = sansAccent(filtre.texte.trim());
+  const liste = DISQUES.filter(d =>
+    (filtre.genre === "Tous" || d.genre === filtre.genre) &&
+    (filtre.etat === "Tous" || d.etat === filtre.etat.toLowerCase()) &&
+    (!q || sansAccent(d.artiste + " " + d.titre).includes(q))
+  ).sort(tris[filtre.tri]);
+  grille.innerHTML = liste.map(carte).join("");
+  vide.classList.toggle("visible", liste.length === 0);
+  compteur.innerHTML = "<strong>" + liste.length + "</strong> disque" + (liste.length > 1 ? "s" : "") +
+    (liste.length !== DISQUES.length ? " sur " + DISQUES.length : "");
+  // L'adresse garde les filtres : on peut partager un lien vers « tout le jazz d'occasion »
+  const p = new URLSearchParams();
+  if (filtre.genre !== "Tous") p.set("genre", filtre.genre);
+  if (filtre.etat !== "Tous") p.set("etat", filtre.etat);
+  if (filtre.texte) p.set("q", filtre.texte);
+  if (filtre.tri !== "nouveautes") p.set("tri", filtre.tri);
+  history.replaceState(null, "", location.pathname + (p.toString() ? "?" + p : ""));
+}
+afficher();
+</script>
+</body>
+</html>

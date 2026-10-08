@@ -138,14 +138,14 @@ a{color:inherit;text-decoration:none}
 </head>
 <body>
 <nav class="nav">
-  <a class="nav-logo" href="#">SPIN ROOM</a>
+  <a class="nav-logo" href="index.html">SPIN ROOM</a>
   <div class="nav-liens">
-    <a href="#" aria-current="page">Accueil</a><a href="#">Catalogue</a><a href="#">À propos</a><a href="#">Contact</a>
+    <a href="index.html" aria-current="page">Accueil</a><a href="catalogue.html">Catalogue</a><a href="#">À propos</a><a href="#">Contact</a>
   </div>
   <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-mobile"><span></span><span></span></button>
 </nav>
 <div class="menu-mobile" id="menu-mobile" aria-hidden="true">
-  <a href="#" aria-current="page">Accueil</a><a href="#">Catalogue</a><a href="#">À propos</a><a href="#">Contact</a>
+  <a href="index.html" aria-current="page">Accueil</a><a href="catalogue.html">Catalogue</a><a href="#">À propos</a><a href="#">Contact</a>
   <p>Vinyles neufs et d'occasion</p>
 </div>
 
@@ -163,7 +163,7 @@ a{color:inherit;text-decoration:none}
   <p class="album" id="album">&nbsp;</p>
 </div>
 <p class="indice">Glisse sur le bac pour le feuilleter</p>
-<div class="cta"><a class="bouton" href="#selection">Voir le bac</a></div>
+<div class="cta"><a class="bouton" href="catalogue.html">Voir le bac</a></div>
 <section class="section esprit" id="esprit">
   <div>
     <p class="surtitre">L'esprit</p>
@@ -181,7 +181,7 @@ a{color:inherit;text-decoration:none}
       <p class="surtitre">La sélection</p>
       <h2>Du moment</h2>
     </div>
-    <a class="lien" href="#">Tout le catalogue →</a>
+    <a class="lien" href="catalogue.html">Tout le catalogue →</a>
   </div>
   <div class="grille" id="grille"></div>
 </section>
@@ -194,7 +194,7 @@ a{color:inherit;text-decoration:none}
     </div>
     <div>
       <h3>Boutique</h3>
-      <ul><li><a href="#">Catalogue</a></li><li><a href="#">À propos</a></li><li><a href="#">Contact</a></li></ul>
+      <ul><li><a href="catalogue.html">Catalogue</a></li><li><a href="#">À propos</a></li><li><a href="#">Contact</a></li></ul>
     </div>
     <div>
       <h3>Suivre</h3>
@@ -207,23 +207,17 @@ a{color:inherit;text-decoration:none}
   </div>
 </footer>
 
+<script src="disques.js"></script>
 <script>
-// Sélection du moment (artistes, albums et prix fictifs)
-const selection = [
-  { nom: "Ezra Cole Quintet", titre: "Blue Hour Sessions", fichier: "ezra-cole-quintet-blue-hour-sessions", etat: "occasion", note: "VG+", prix: "32,90 €" },
-  { nom: "Riviera Tapes", titre: "Coastline Disco", fichier: "riviera-tapes-coastline-disco", etat: "neuf", prix: "29,90 €" },
-  { nom: "Kid Lazarus", titre: "Eastside Psalms", fichier: "kid-lazarus-eastside-psalms", etat: "neuf", prix: "27,90 €" },
-  { nom: "Harlow Street", titre: "Granite Hearts", fichier: "harlow-street-granite-hearts", etat: "occasion", note: "NM", prix: "24,90 €" },
-  { nom: "Grace Holloway", titre: "Sugar & Static", fichier: "grace-holloway-sugar-and-static", etat: "neuf", prix: "34,90 €" },
-  { nom: "Atlas Kid", titre: "Satellite Love", fichier: "atlas-kid-satellite-love", etat: "occasion", note: "VG", prix: "19,90 €" }
-];
+// Sélection du moment : les disques marqués « selection » dans disques.js
+const selection = DISQUES.filter(d => d.selection).sort((a, b) => a.selection - b.selection);
 document.getElementById("grille").innerHTML = selection.map(d => {
-  const img = "pochettes/" + d.fichier + ".jpg";
-  return '<a class="carte" href="#"><div class="carte-visuel"><span class="mini-vinyle" style="--etiquette:url(\'' + img + '\')"></span>' +
-    '<img src="' + img + '" alt="Pochette de ' + d.titre + ' — ' + d.nom + '" loading="lazy"></div>' +
-    '<p class="carte-artiste">' + d.nom + '</p><p class="carte-titre">' + d.titre + '</p>' +
+  const img = pochette(d);
+  return '<a class="carte" href="catalogue.html"><div class="carte-visuel"><span class="mini-vinyle" style="--etiquette:url(\'' + img + '\')"></span>' +
+    '<img src="' + img + '" alt="Pochette de ' + d.titre + ' — ' + d.artiste + '" loading="lazy"></div>' +
+    '<p class="carte-artiste">' + d.artiste + '</p><p class="carte-titre">' + d.titre + '</p>' +
     '<div class="carte-infos"><span class="badge ' + d.etat + '">' + (d.etat === "neuf" ? "Neuf" : "Occasion") + '</span>' +
-    (d.note ? '<span>' + d.note + '</span>' : '') + '<span class="prix">' + d.prix + '</span></div></a>';
+    (d.note ? '<span>' + d.note + '</span>' : '') + '<span class="prix">' + prixTexte(d.prix) + '</span></div></a>';
 }).join("");
 
 // Menu téléphone
@@ -240,40 +234,8 @@ burger.addEventListener("click", () => basculerMenu(!document.body.classList.con
 menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => basculerMenu(false)));
 addEventListener("keydown", e => { if (e.key === "Escape") basculerMenu(false); });
 
-// Pour ajouter un disque : une ligne ici + l'image dans le dossier pochettes/
-// 4e valeur facultative : couleur du vinyle (édition colorée), ex. "#a8321f"
-const disques = [
-  ["Kid Lazarus", "Eastside Psalms", "kid-lazarus-eastside-psalms"],
-  ["Riviera Tapes", "Coastline Disco", "riviera-tapes-coastline-disco", "#f2a2b6"],
-  ["Kasia Wren", "Frequencies", "kasia-wren-frequencies"],
-  ["The Lighthouse Kids", "Static Weather", "the-lighthouse-kids-static-weather", "#f0d23a"],
-  ["Ezra Cole Quintet", "Blue Hour Sessions", "ezra-cole-quintet-blue-hour-sessions", "#2c5aa0"],
-  ["Grace Holloway", "Sugar & Static", "grace-holloway-sugar-and-static", "#e9662b"],
-  ["Lion Harbour", "Salt Water Roots", "lion-harbour-salt-water-roots"],
-  ["Lena Moss", "Paper Moons", "lena-moss-paper-moons"],
-  ["Marlowe Grant", "Gold Teeth Sunday", "marlowe-grant-gold-teeth-sunday", "#c9a227"],
-  ["Paloma Disco Club", "Neon Boulevard", "paloma-disco-club-neon-boulevard"],
-  ["Atlas Kid", "Satellite Love", "atlas-kid-satellite-love"],
-  ["Harlow Street", "Granite Hearts", "harlow-street-granite-hearts"],
-  ["Odette Vance", "Late Tide", "odette-vance-late-tide"],
-  ["The Sunday Gospel Machine", "Brighter Days", "the-sunday-gospel-machine-brighter-days"],
-  ["Velvet Stairwell", "Concrete Lullabies", "velvet-stairwell-concrete-lullabies"],
-  ["Tomo Arden", "Synthetic Light", "tomo-arden-synthetic-light"],
-  ["The Honey Engines", "Velvet Fuzz", "the-honey-engines-velvet-fuzz"],
-  ["Hollis Brandt Trio", "Smoke & Brass", "hollis-brandt-trio-smoke-and-brass"],
-  ["Billie Hart", "Last Dance in July", "billie-hart-last-dance-in-july", "#7a2e5a"],
-  ["Duke Morrow", "Overtime", "duke-morrow-overtime"],
-  ["Silas Grey", "Monochrome Summer", "silas-grey-monochrome-summer"],
-  ["Northern Cassettes", "Wires & Weather", "northern-cassettes-wires-and-weather"],
-  ["Dexter Bloom Quartet", "After Hours Club", "dexter-bloom-quartet-after-hours-club"],
-  ["Ruby Okafor", "Golden Frequency", "ruby-okafor-golden-frequency"],
-  ["Moreno Kane", "Fog & Concrete", "moreno-kane-fog-and-concrete"],
-  ["Koji Amano", "Tokyo Rain Loops", "koji-amano-tokyo-rain-loops"],
-  ["The Midnight Couriers", "Long Way Home", "the-midnight-couriers-long-way-home"],
-  ["Jaylen Oakes", "Late Checkout", "jaylen-oakes-late-checkout"],
-  ["The Wilder Hotel", "Room 404", "the-wilder-hotel-room-404"],
-  ["Cash Monroe", "Southside Gospel", "cash-monroe-southside-gospel", "#2f6b4f"]
-];
+// Le bac affiche tous les disques de disques.js, dans leur ordre
+const disques = DISQUES.map(d => [d.artiste, d.titre, d.id, d.couleur]);
 const scene = document.getElementById("scene");
 const bac = document.getElementById("bac");
 const artiste = document.getElementById("artiste");
