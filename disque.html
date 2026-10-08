@@ -179,6 +179,7 @@ a{color:inherit;text-decoration:none}
 </footer>
 
 <script src="disques.js"></script>
+<script src="panier.js"></script>
 <script>
 // Menu téléphone
 const burger = document.getElementById("burger");
@@ -253,9 +254,19 @@ if (!d) {
       '<a class="lien" href="catalogue.html?genre=' + encodeURIComponent(d.genre) + '">Voir le bac ' + d.genre + ' →</a></div>' +
       '<div class="grille">' + voisins.map(carte).join("") + '</div></section>';
 
-  document.getElementById("panier").addEventListener("click", () => {
-    document.getElementById("message").textContent = "Le panier arrive bientôt sur SPIN ROOM.";
+  // Bouton panier : un seul exemplaire par disque, comme chez un vrai disquaire
+  const btn = document.getElementById("panier"), msg = document.getElementById("message");
+  const majBouton = () => {
+    const dedans = Panier.contient(d.id);
+    btn.textContent = dedans ? "Voir le panier" : "Ajouter au panier";
+    msg.textContent = dedans ? "Ce disque est dans ton panier." : (d.etat === "occasion" ? "Exemplaire unique." : "");
+  };
+  btn.addEventListener("click", () => {
+    if (!Panier.contient(d.id)) { Panier.ajouter(d.id); majBouton(); }
+    Panier.ouvrir();
   });
+  Panier.surChangement(majBouton);
+  majBouton();
 }
 </script>
 </body>
