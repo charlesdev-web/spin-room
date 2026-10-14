@@ -1,6 +1,8 @@
-Déposez ici deux fichiers de police :
+Polices du site, hébergées localement :
 
-Fraunces.woff2  (police des titres)
-Inter.woff2     (police des textes)
+Fraunces.woff  (titres)
+Inter.woff     (textes)
 
-Tant qu'ils sont absents, le site utilise des polices de secours.
+Versions allégées des fichiers .ttf (seuls les caractères latins sont gardés).
+Les .ttf servent de secours si le .woff ne se charge pas.
+Le logo SPIN ROOM utilise Georgia, déjà présente sur les ordinateurs.

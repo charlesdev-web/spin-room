@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Catalogue — SPIN ROOM</title>
 <meta name="description" content="Tous les vinyles neufs et d'occasion de SPIN ROOM, à filtrer par genre et par état.">
+<link rel="preload" href="fonts/Inter.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="fonts/Fraunces.woff" as="font" type="font/woff" crossorigin>
 <!-- icones -->
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.png" type="image/png" sizes="48x48">
@@ -23,8 +25,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <!-- /icones -->
 <style>
-@font-face{font-family:"Fraunces";src:url("fonts/Fraunces.woff2") format("woff2"),url("fonts/Fraunces.ttf") format("truetype");font-weight:100 900;font-display:swap}
-@font-face{font-family:"Inter";src:url("fonts/Inter.woff2") format("woff2"),url("fonts/Inter.ttf") format("truetype");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Fraunces";src:url("fonts/Fraunces.woff") format("woff"),url("fonts/Fraunces.ttf") format("truetype");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Inter";src:url("fonts/Inter.woff") format("woff"),url("fonts/Inter.ttf") format("truetype");font-weight:100 900;font-display:swap}
 :root{
   --noir:#000;--creme:#E8DCC0;--creme-clair:#F3EEE4;--gris:#8A8278;
   --titre:"Fraunces",Georgia,"Times New Roman",serif;
@@ -98,7 +100,7 @@ a{color:inherit;text-decoration:none}
 .pied-haut{max-width:1120px;margin:0 auto;padding:clamp(3rem,7vw,5rem) clamp(1rem,4vw,2rem) 2.5rem;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:2rem}
 .pied-haut .pied-logo{margin-top:0;max-width:none;font-family:var(--logo);font-size:1.8rem;color:var(--creme);letter-spacing:.06em}
 .pied-haut p{color:var(--gris);font-size:.9rem;margin-top:.6rem;max-width:32ch;line-height:1.6}
-.pied h3{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gris);font-weight:500;margin-bottom:1rem}
+.pied h2{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gris);font-weight:500;margin-bottom:1rem}
 .pied ul{list-style:none;padding:0;margin:0;display:grid;gap:.6rem}
 .pied li a{color:var(--creme-clair);font-size:.95rem}
 .pied li a:hover{color:var(--creme)}
@@ -222,11 +224,11 @@ select option{background:#111;color:var(--creme-clair)}
       <p>Vinyles neufs et d'occasion, choisis un par un.</p>
     </div>
     <div>
-      <h3>Boutique</h3>
+      <h2>Boutique</h2>
       <ul><li><a href="catalogue.html">Catalogue</a></li><li><a href="a-propos.html">À propos</a></li><li><a href="contact.html">Contact</a></li></ul>
     </div>
     <div>
-      <h3>Le projet</h3>
+      <h2>Le projet</h2>
       <ul><li><a href="https://github.com/charlesdev-web/spin-room">Code sur GitHub</a></li></ul>
     </div>
   </div>
@@ -309,7 +311,7 @@ const tris = {
 function carte(d) {
   const img = pochette(d);
   return '<a class="carte" href="' + fiche(d) + '" aria-label="' + d.artiste + ', ' + d.titre + '">' +
-    '<div class="carte-visuel"><span class="mini-vinyle" style="--etiquette:url(\'' + img + '\')' + (d.couleur ? ';--c:' + d.couleur : '') + '"></span>' +
+    '<div class="carte-visuel"><span class="mini-vinyle"' + (d.couleur ? ' style="--c:' + d.couleur + '"' : '') + '></span>' +
     '<img src="' + img + '" alt="" loading="lazy"></div>' +
     '<p class="carte-artiste">' + d.artiste + '</p><p class="carte-titre">' + d.titre + '</p>' +
     '<p class="carte-meta">' + d.genre + ' · ' + d.annee + '</p>' +
@@ -325,6 +327,12 @@ function afficher() {
     (!q || sansAccent(d.artiste + " " + d.titre).includes(q))
   ).sort(tris[filtre.tri]);
   grille.innerHTML = liste.map(carte).join("");
+  // L'étiquette du petit vinyle reprend la pochette, mais seulement une fois celle-ci chargée :
+  // les pochettes hors écran ne sont ainsi téléchargées qu'au défilement.
+  grille.querySelectorAll(".carte-visuel img").forEach(img => {
+    const poser = () => img.previousElementSibling.style.setProperty("--etiquette", "url('" + img.getAttribute("src") + "')");
+    if (img.complete && img.naturalWidth) poser(); else img.addEventListener("load", poser, { once: true });
+  });
   vide.classList.toggle("visible", liste.length === 0);
   compteur.innerHTML = "<strong>" + liste.length + "</strong> disque" + (liste.length > 1 ? "s" : "") +
     (liste.length !== DISQUES.length ? " sur " + DISQUES.length : "");

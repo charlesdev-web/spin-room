@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>À propos — SPIN ROOM</title>
 <meta name="description" content="SPIN ROOM, un disquaire imaginaire construit comme un vrai : l'idée, la démarche et les coulisses du projet.">
+<link rel="preload" href="fonts/Inter.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="fonts/Fraunces.woff" as="font" type="font/woff" crossorigin>
 <!-- icones -->
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.png" type="image/png" sizes="48x48">
@@ -23,8 +25,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <!-- /icones -->
 <style>
-@font-face{font-family:"Fraunces";src:url("fonts/Fraunces.woff2") format("woff2"),url("fonts/Fraunces.ttf") format("truetype");font-weight:100 900;font-display:swap}
-@font-face{font-family:"Inter";src:url("fonts/Inter.woff2") format("woff2"),url("fonts/Inter.ttf") format("truetype");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Fraunces";src:url("fonts/Fraunces.woff") format("woff"),url("fonts/Fraunces.ttf") format("truetype");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Inter";src:url("fonts/Inter.woff") format("woff"),url("fonts/Inter.ttf") format("truetype");font-weight:100 900;font-display:swap}
 :root{
   --noir:#000;--creme:#E8DCC0;--creme-clair:#F3EEE4;--gris:#8A8278;
   --titre:"Fraunces",Georgia,"Times New Roman",serif;
@@ -98,7 +100,7 @@ a{color:inherit;text-decoration:none}
 .pied-haut{max-width:1120px;margin:0 auto;padding:clamp(3rem,7vw,5rem) clamp(1rem,4vw,2rem) 2.5rem;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:2rem}
 .pied-haut .pied-logo{margin-top:0;max-width:none;font-family:var(--logo);font-size:1.8rem;color:var(--creme);letter-spacing:.06em}
 .pied-haut p{color:var(--gris);font-size:.9rem;margin-top:.6rem;max-width:32ch;line-height:1.6}
-.pied h3{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gris);font-weight:500;margin-bottom:1rem}
+.pied h2{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gris);font-weight:500;margin-bottom:1rem}
 .pied ul{list-style:none;padding:0;margin:0;display:grid;gap:.6rem}
 .pied li a{color:var(--creme-clair);font-size:.95rem}
 .pied li a:hover{color:var(--creme)}
@@ -208,11 +210,11 @@ a{color:inherit;text-decoration:none}
       <p>Vinyles neufs et d'occasion, choisis un par un.</p>
     </div>
     <div>
-      <h3>Boutique</h3>
+      <h2>Boutique</h2>
       <ul><li><a href="catalogue.html">Catalogue</a></li><li><a href="a-propos.html">À propos</a></li><li><a href="contact.html">Contact</a></li></ul>
     </div>
     <div>
-      <h3>Le projet</h3>
+      <h2>Le projet</h2>
       <ul><li><a href="https://github.com/charlesdev-web/spin-room">Code sur GitHub</a></li></ul>
     </div>
   </div>
