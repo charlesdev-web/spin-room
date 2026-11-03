@@ -18,7 +18,7 @@
 @font-face{font-family:"Fraunces";src:url("fonts/Fraunces.woff") format("woff"),url("fonts/Fraunces.ttf") format("truetype");font-weight:100 900;font-display:swap}
 @font-face{font-family:"Inter";src:url("fonts/Inter.woff") format("woff"),url("fonts/Inter.ttf") format("truetype");font-weight:100 900;font-display:swap}
 :root{
-  --noir:#000;--creme:#E8DCC0;--creme-clair:#F3EEE4;--gris:#8A8278;
+  --noir:#000;--creme:#E8DCC0;--creme-clair:#F3EEE4;--gris:#A39A8E;
   --titre:"Fraunces",Georgia,"Times New Roman",serif;
   --logo:Georgia,"Times New Roman",serif;
   --texte:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -63,7 +63,7 @@ a{color:inherit;text-decoration:none}
 
 /* Sections */
 .section{max-width:1120px;margin:0 auto;padding:clamp(4rem,10vw,8rem) clamp(1rem,4vw,2rem)}
-.surtitre{font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gris);margin-bottom:1.25rem}
+.surtitre{font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gris);margin-bottom:1.25rem}
 .entete{display:flex;justify-content:space-between;align-items:end;gap:1rem;margin-bottom:clamp(2rem,4vw,3rem)}
 .entete h2{font-family:var(--titre);font-weight:350;font-size:clamp(2rem,4vw,3rem);color:var(--creme);line-height:1}
 .lien{font-size:.9rem;color:var(--creme);border-bottom:1px solid rgba(232,220,192,.35);padding-bottom:2px;white-space:nowrap}
@@ -78,10 +78,10 @@ a{color:inherit;text-decoration:none}
   box-shadow:0 20px 40px -18px rgba(0,0,0,.9),0 0 0 1px rgba(232,220,192,.08);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
 .carte:hover .mini-vinyle,.carte:focus-visible .mini-vinyle,.carte.survol .mini-vinyle{transform:translateX(14%) rotate(40deg)}
 .carte:hover img,.carte:focus-visible img,.carte.survol img{transform:translateY(-4px)}
-.carte-artiste{margin-top:1.1rem;font-size:.82rem;color:var(--gris)}
+.carte-artiste{margin-top:1.1rem;font-size:.88rem;color:var(--gris)}
 .carte-titre{font-family:var(--titre);font-size:1.3rem;color:var(--creme-clair);margin-top:.15rem;line-height:1.2}
-.carte-infos{display:flex;align-items:center;gap:.6rem;margin-top:.7rem;font-size:.82rem;color:var(--gris)}
-.badge{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:.25rem .6rem;border-radius:999px;border:1px solid var(--creme)}
+.carte-infos{display:flex;align-items:center;gap:.6rem;margin-top:.7rem;font-size:.88rem;color:var(--gris)}
+.badge{font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;padding:.25rem .6rem;border-radius:999px;border:1px solid var(--creme)}
 .badge.neuf{background:var(--creme);color:#1f1a10}
 .badge.occasion{color:var(--creme)}
 .prix{margin-left:auto;color:var(--creme-clair);font-size:.95rem}
@@ -90,7 +90,7 @@ a{color:inherit;text-decoration:none}
 .pied-haut{max-width:1120px;margin:0 auto;padding:clamp(3rem,7vw,5rem) clamp(1rem,4vw,2rem) 2.5rem;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:2rem}
 .pied-haut .pied-logo{margin-top:0;max-width:none;font-family:var(--logo);font-size:1.8rem;color:var(--creme);letter-spacing:.06em}
 .pied-haut p{color:var(--gris);font-size:.9rem;margin-top:.6rem;max-width:32ch;line-height:1.6}
-.pied h2{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gris);font-weight:500;margin-bottom:1rem}
+.pied h2{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gris);font-weight:500;margin-bottom:1rem}
 .pied ul{list-style:none;padding:0;margin:0;display:grid;gap:.6rem}
 .pied li a{color:var(--creme-clair);font-size:.95rem}
 .pied li a:hover{color:var(--creme)}
@@ -101,7 +101,7 @@ a{color:inherit;text-decoration:none}
 @media (max-width:420px){.carte-titre{font-size:1.1rem}.carte-infos{flex-wrap:wrap}.prix{margin-left:0;width:100%}}
 .grille .carte{min-width:0}
 
-.carte-meta{font-size:.78rem;color:var(--gris);margin-top:.35rem}
+.carte-meta{font-size:.86rem;color:var(--gris);margin-top:.35rem}
 .carte-visuel .mini-vinyle{background:repeating-radial-gradient(circle,var(--c,#141414) 0 2px,color-mix(in srgb,var(--c,#141414) 75%,#000) 2px 3px)}
 
 

@@ -40,12 +40,12 @@ html.panier-ouvert,html.panier-ouvert body{overflow:hidden}
 .tiroir-liste{flex:1;overflow-y:auto;padding:.5rem 1.5rem;list-style:none;margin:0}
 .article{display:grid;grid-template-columns:68px 1fr auto;gap:1rem;align-items:center;padding:1rem 0;border-bottom:1px solid rgba(232,220,192,.08)}
 .article img{width:68px;height:68px;object-fit:cover;border-radius:2px;display:block}
-.article .a-artiste{font-size:.78rem;color:var(--gris)}
+.article .a-artiste{font-size:.86rem;color:var(--gris)}
 .article .a-titre{font-family:var(--titre);font-size:1.1rem;color:var(--creme-clair);line-height:1.2;margin:.1rem 0 .35rem}
-.article .a-etat{font-size:.75rem;color:var(--gris)}
+.article .a-etat{font-size:.82rem;color:var(--gris)}
 .article .a-droite{text-align:right;display:grid;gap:.4rem;justify-items:end}
 .article .a-prix{color:var(--creme-clair)}
-.retirer{background:none;border:none;color:var(--gris);font:inherit;font-size:.78rem;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px}
+.retirer{background:none;border:none;color:var(--gris);font:inherit;font-size:.86rem;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px}
 .retirer:hover{color:var(--creme-clair)}
 .tiroir-vide,.tiroir-merci{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;gap:.75rem}
 .tiroir-vide p:first-child,.tiroir-merci p:first-child{font-family:var(--titre);font-size:1.7rem;color:var(--creme-clair)}
@@ -54,9 +54,9 @@ html.panier-ouvert,html.panier-ouvert body{overflow:hidden}
 .tiroir-pied{padding:1.25rem 1.5rem calc(1.5rem + env(safe-area-inset-bottom,0px));border-top:1px solid rgba(232,220,192,.1);display:grid;gap:.6rem}
 .ligne-total{display:flex;justify-content:space-between;font-size:.9rem;color:var(--gris)}
 .ligne-total.grand{font-size:1.15rem;color:var(--creme-clair);margin-top:.25rem}
-.astuce{font-size:.78rem;color:var(--gris)}
+.astuce{font-size:.86rem;color:var(--gris)}
 .commander{width:100%;margin-top:.6rem;border:none;cursor:pointer;font-family:inherit;text-align:center}
-.demo{font-size:.72rem;color:var(--gris);text-align:center;opacity:.8}
+.demo{font-size:.8rem;color:var(--gris);text-align:center;opacity:.9}
 @media (max-width:600px){.panier-btn .txt{display:none}.panier-btn{padding:.4rem .6rem}.nav-droite{gap:.5rem}}
 @media (prefers-reduced-motion:reduce){.tiroir,.voile,.panier-btn .nb{transition:none!important;animation:none!important}}`;
   const style = document.createElement("style");
